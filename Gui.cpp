@@ -71,11 +71,10 @@ void Gui::Load()
 	gtk_fixed_put(GTK_FIXED(frame), cp_lbl, 20, 70);
 	
 	gtk_widget_show_all(window);
-
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-	//g_signal_connect(submit_but, "clicked", G_CALLBACK(Submit), NULL);	
-
-	 //g_signal_connect(G_OBJECT(user_db), "changed", G_CALLBACK(combo_selected), (gpointer) label);
+	g_signal_connect(submit_but, "clicked", G_CALLBACK(Gui::Submit), NULL);
+	
+	g_signal_connect(G_OBJECT(user_db), "changed", G_CALLBACK(Gui::combo_selected), NULL);
 
 	gtk_main();
 }
@@ -87,6 +86,7 @@ void Gui::Submit(GtkWidget *widget, gpointer label)
 void Gui::combo_selected(GtkWidget *widget, gpointer window)
 { 
 	gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	gtk_label_set_text(GTK_LABEL(window), text);
+	//gtk_label_set_text(GTK_LABEL(window), text);
+	printf("%s\n",text);
 	g_free(text);
 }

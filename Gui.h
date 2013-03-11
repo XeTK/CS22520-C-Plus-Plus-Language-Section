@@ -3,7 +3,8 @@ class Gui
 {
 	public:
 		void Load();
-		void Submit(GtkWidget *widget, gpointer label);
-		void combo_selected(GtkWidget *widget, gpointer window);
+	protected:
+		static void Submit(GtkWidget *widget, gpointer label);
+		static void combo_selected(GtkWidget *widget, gpointer window);
 	
 };
