@@ -1,9 +1,9 @@
 #include <gtk/gtk.h>
 #include "Gui.h"
+static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *time_cb, *med_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *radio, *cp_lbl;
+
 void Gui::Load()
 {
-	GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *time_cb, *med_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *radio, *cp_lbl;
-
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "CheckPoint Manger");
 	gtk_window_set_default_size(GTK_WINDOW(window), 250, 250);
@@ -36,7 +36,12 @@ void Gui::Load()
 	gtk_fixed_put(GTK_FIXED(frame), depart_box, 125, 150);
 
 	//node box
-	node_box = gtk_entry_new();
+	node_box = gtk_combo_box_new_text();
+	
+	gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), "1");
+	gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), "2");
+
+
 	gtk_widget_set_size_request(node_box, 95, 25);
 	gtk_fixed_put(GTK_FIXED(frame), node_box, 125, 65);
 	
@@ -61,9 +66,7 @@ void Gui::Load()
 	gtk_widget_set_size_request(user_lbl, 50,25);
         gtk_widget_set_size_request(arival_lbl, 50,25);
         gtk_widget_set_size_request(depart_lbl, 50,25);
-/*	gtk_widget_set_size_request(radio,150,25);
-	gtk_widget_set_size_request(cp_lbl,150,25);
-*/	
+	
 	gtk_fixed_put(GTK_FIXED(frame), user_lbl, 20, 5);
 	gtk_fixed_put(GTK_FIXED(frame), arival_lbl, 20, 130);
 	gtk_fixed_put(GTK_FIXED(frame), depart_lbl, 125, 130);
@@ -81,12 +84,14 @@ void Gui::Load()
 
 void Gui::Submit(GtkWidget *widget, gpointer label)
 {
-	printf("HelloWorld\n");
+	gchar *node = gtk_combo_box_get_active_text(GTK_COMBO_BOX(node_box));
+	printf("%s\n",node);
+	const char *dep = gtk_entry_get_text(GTK_ENTRY(depart_box));
+	printf("%s\n",dep);
 }
 void Gui::combo_selected(GtkWidget *widget, gpointer window)
 { 
 	gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	//gtk_label_set_text(GTK_LABEL(window), text);
 	printf("%s\n",text);
 	g_free(text);
 }
