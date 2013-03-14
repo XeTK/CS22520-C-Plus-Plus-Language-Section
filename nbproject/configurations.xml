@@ -2,8 +2,14 @@
 <configurationDescriptor version="88">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="CS22520GUI">
+      <in>Course.cpp</in>
+      <in>Course.h</in>
+      <in>Entrant.cpp</in>
+      <in>Entrant.h</in>
       <in>Gui.cpp</in>
       <in>Gui.h</in>
+      <in>Node.cpp</in>
+      <in>Node.h</in>
       <in>main.cpp</in>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -31,7 +37,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>./blah.sh</buildCommand>
           <cleanCommand>${MAKE} -f blah.sh clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>simple</executablePath>
           <ccTool>
             <incDir>
               <pElem>/usr/include/glib-2.0</pElem>
@@ -50,11 +56,23 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Course.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Course.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Entrant.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Entrant.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Gui.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
         </ccTool>
       </item>
       <item path="Gui.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Node.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>

@@ -2,8 +2,14 @@
 <configurationDescriptor version="88">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="CS22520GUI">
+      <in>Course.cpp</in>
+      <in>Course.h</in>
+      <in>Entrant.cpp</in>
+      <in>Entrant.h</in>
       <in>Gui.cpp</in>
       <in>Gui.h</in>
+      <in>Node.cpp</in>
+      <in>Node.h</in>
       <in>main.cpp</in>
     </df>
   </logicalFolder>
