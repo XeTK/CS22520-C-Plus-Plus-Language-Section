@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+using namespace std;
 class Gui
 {
 	public:

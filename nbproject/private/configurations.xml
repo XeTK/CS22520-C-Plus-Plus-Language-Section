@@ -6,8 +6,12 @@
       <in>Course.h</in>
       <in>Entrant.cpp</in>
       <in>Entrant.h</in>
+      <in>FileReader.cpp</in>
+      <in>FileReader.h</in>
       <in>Gui.cpp</in>
       <in>Gui.h</in>
+      <in>Holder.cpp</in>
+      <in>Holder.h</in>
       <in>Node.cpp</in>
       <in>Node.h</in>
       <in>main.cpp</in>

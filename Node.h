@@ -4,6 +4,7 @@
  *
  * Created on 14 March 2013, 16:24
  */
+using namespace std;
 
 #ifndef NODE_H
 #define	NODE_H

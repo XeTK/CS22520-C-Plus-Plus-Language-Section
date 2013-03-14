@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
 #include "Gui.h"
+using namespace std;
 static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *timemed_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *cp_lbl;
 
 void Gui::Load()

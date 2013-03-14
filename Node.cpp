@@ -6,7 +6,7 @@
  */
 
 #include "Node.h"
-
+using namespace std;
 Node::Node(int node, char *nodetype) 
 {
     this->node = node;

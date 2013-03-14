@@ -6,6 +6,8 @@
  */
 
 #include <string>
+using namespace std;
+
 #ifndef ENTRANT_H
 #define	ENTRANT_H
 
@@ -13,7 +15,7 @@ class Entrant
 {
     int competitor_number;
     char course;
-    std::string competitor_name;
+    string competitor_name;
     public:
         Entrant();
     private:

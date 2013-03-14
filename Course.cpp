@@ -6,7 +6,7 @@
  */
 
 #include "Course.h"
-
+using namespace std;
 Course::Course(char course_ident) 
 {
     this->course = course_ident;
@@ -15,7 +15,7 @@ char Course::get_course()
 {
     return this->course;
 }
-std::vector<Node> Course::get_nodes()
+vector<Node> Course::get_nodes()
 {
     return this->nodes;
 }

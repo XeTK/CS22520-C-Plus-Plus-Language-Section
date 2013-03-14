@@ -6,8 +6,12 @@
       <in>Course.h</in>
       <in>Entrant.cpp</in>
       <in>Entrant.h</in>
+      <in>FileReader.cpp</in>
+      <in>FileReader.h</in>
       <in>Gui.cpp</in>
       <in>Gui.h</in>
+      <in>Holder.cpp</in>
+      <in>Holder.h</in>
       <in>Node.cpp</in>
       <in>Node.h</in>
       <in>main.cpp</in>
@@ -64,11 +68,19 @@
       </item>
       <item path="Entrant.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="FileReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileReader.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Gui.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
         </ccTool>
       </item>
       <item path="Gui.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Holder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Holder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>

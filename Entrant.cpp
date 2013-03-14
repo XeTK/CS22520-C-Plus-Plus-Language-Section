@@ -6,7 +6,7 @@
  */
 
 #include "Entrant.h"
-
+using namespace std;
 Entrant::Entrant() 
 {
     
