@@ -1,6 +1,6 @@
 #include <gtk/gtk.h>
 #include "Gui.h"
-static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *time_cb, *med_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *radio, *cp_lbl;
+static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *timemed_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *cp_lbl;
 
 void Gui::Load()
 {
@@ -45,22 +45,16 @@ void Gui::Load()
 	gtk_widget_set_size_request(node_box, 95, 25);
 	gtk_fixed_put(GTK_FIXED(frame), node_box, 125, 65);
 	
-	//med_radio
-	med_cb = gtk_radio_button_new_with_label(NULL,"Medical");
-	gtk_widget_set_size_request(med_cb, 95,25);
-	gtk_fixed_put(GTK_FIXED(frame), med_cb, 125, 110);
-
 	//time_radio
-	time_cb = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(med_cb),"Time");
-	gtk_widget_set_size_request(time_cb, 95,25);
-	gtk_fixed_put(GTK_FIXED(frame), time_cb, 20, 110);
+	timemed_cb = gtk_check_button_new_with_label("Medical Check Point");
+//	gtk_widget_set_size_request(timemed_cb, 95,25);
+	gtk_fixed_put(GTK_FIXED(frame), timemed_cb, 20, 110);
 
 
 	//labels
 	user_lbl = gtk_label_new("Entrants");
 	arival_lbl = gtk_label_new("Arival");
 	depart_lbl = gtk_label_new("Depart");
-	radio = gtk_label_new("Check Point type");
 	cp_lbl = gtk_label_new("Check Point");
 	
 	gtk_widget_set_size_request(user_lbl, 50,25);
@@ -70,15 +64,11 @@ void Gui::Load()
 	gtk_fixed_put(GTK_FIXED(frame), user_lbl, 20, 5);
 	gtk_fixed_put(GTK_FIXED(frame), arival_lbl, 20, 130);
 	gtk_fixed_put(GTK_FIXED(frame), depart_lbl, 125, 130);
-	gtk_fixed_put(GTK_FIXED(frame), radio, 20, 95);
 	gtk_fixed_put(GTK_FIXED(frame), cp_lbl, 20, 70);
 	
 	gtk_widget_show_all(window);
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-	g_signal_connect(submit_but, "clicked", G_CALLBACK(Gui::Submit), NULL);
-	
-	g_signal_connect(G_OBJECT(user_db), "changed", G_CALLBACK(Gui::combo_selected), NULL);
-
+	g_signal_connect(submit_but, "clicked", G_CALLBACK(Gui::Submit), NULL);	
 	gtk_main();
 }
 
@@ -86,12 +76,18 @@ void Gui::Submit(GtkWidget *widget, gpointer label)
 {
 	gchar *node = gtk_combo_box_get_active_text(GTK_COMBO_BOX(node_box));
 	printf("%s\n",node);
+
+	gchar *checkbox =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(user_db));
+        printf("%s\n",checkbox);
+
 	const char *dep = gtk_entry_get_text(GTK_ENTRY(depart_box));
 	printf("%s\n",dep);
-}
-void Gui::combo_selected(GtkWidget *widget, gpointer window)
-{ 
-	gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	printf("%s\n",text);
-	g_free(text);
+	
+	const char *ari = gtk_entry_get_text(GTK_ENTRY(arival_box));
+	printf("%s\n",ari);
+
+	if (GTK_TOGGLE_BUTTON (timemed_cb)->active) 
+		printf("Lemons\n");
+	else
+		printf("Limes\n");
 }
