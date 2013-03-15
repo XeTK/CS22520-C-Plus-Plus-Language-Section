@@ -65,7 +65,9 @@ vector<Course> FileReader::get_courses(string path)
 
         }
         cout << "\n";
+        temp_c.push_back(t_course);
     }
+    return temp_c;
         
 }
 vector<Entrant> FileReader::get_entrants(string path)

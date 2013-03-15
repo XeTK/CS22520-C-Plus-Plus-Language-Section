@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include "Course.h"
 using namespace std;
 
 #ifndef ENTRANT_H
@@ -14,10 +15,13 @@ using namespace std;
 class Entrant 
 {
     int competitor_number;
-    char course;
+    Course course;
     string competitor_name;
     public:
-        Entrant();
+        Entrant(int com_num, Course course,string com_name);
+        int get_entrant_no();
+        Course get_course();
+        string get_name();
     private:
 
 };
