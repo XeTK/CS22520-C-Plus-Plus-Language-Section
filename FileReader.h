@@ -19,6 +19,7 @@ class FileReader
             vector<Entrant> get_entrants(string path);
         private:
             vector<string> get_file_contents(string path);
+            vector<Node> get_nodes(string path);
             
 };
 
