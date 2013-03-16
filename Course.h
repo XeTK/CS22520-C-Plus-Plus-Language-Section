@@ -16,6 +16,8 @@ class Course
     vector<Node> nodes;
     public:
         Course(char course_ident);
+        Course();
+        ~Course();
         char get_course();
         vector<Node> get_nodes();
         void add_node(Node in_node);

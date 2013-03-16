@@ -19,6 +19,8 @@ class Entrant
     string competitor_name;
     public:
         Entrant(int com_num, Course course,string com_name);
+        ~Entrant();
+        Entrant();
         int get_entrant_no();
         Course get_course();
         string get_name();

@@ -7,9 +7,15 @@
 
 #include "Course.h"
 using namespace std;
+Course::Course(){}
+
 Course::Course(char course_ident) 
 {
     this->course = course_ident;
+}
+Course::~Course()
+{
+    
 }
 char Course::get_course()
 {

@@ -8,15 +8,17 @@ using namespace std;
 
 #ifndef NODE_H
 #define	NODE_H
-
+#include <string>
 class Node 
 {
     int node;
-    char *nodetype;
+    string nodetype;
     public:
-        Node(int node, char *nodetype);
+        Node(int node, string nodetype);
+        Node();
+        ~Node();
         int get_node();
-        char *get_nodetype();
+        string get_nodetype();
 
 };
 

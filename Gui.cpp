@@ -1,8 +1,24 @@
 #include <gtk/gtk.h>
+#include <vector>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include "Gui.h"
+#include "Entrant.h"
+#include "Course.h"
+#include "Node.h"
+#include "FileReader.h"
+
 using namespace std;
 static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *timemed_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *cp_lbl;
-
+static vector<Entrant> glob_entrants;
+static int number_of_nodes = 0;
+Gui::Gui()
+{
+    FileReader fr;
+    glob_entrants = fr.get_entrants("Data/entrants.txt","Data/courses.txt","Data/nodes.txt");
+}
 void Gui::Load()
 {
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -20,8 +36,8 @@ void Gui::Load()
 	//user Combo Box
 	user_db = gtk_combo_box_new_text();
 	
-	gtk_combo_box_append_text(GTK_COMBO_BOX(user_db), "BLAH");
-	gtk_combo_box_append_text(GTK_COMBO_BOX(user_db), "BLAH1");
+        for (int i = 0; i < glob_entrants.size();i++)
+                gtk_combo_box_append_text(GTK_COMBO_BOX(user_db), glob_entrants[i].get_name().c_str());
 	
 	gtk_widget_set_size_request(user_db, 200, 35);
 	gtk_fixed_put(GTK_FIXED(frame), user_db, 20, 25);
@@ -39,10 +55,6 @@ void Gui::Load()
 	//node box
 	node_box = gtk_combo_box_new_text();
 	
-	gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), "1");
-	gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), "2");
-
-
 	gtk_widget_set_size_request(node_box, 95, 25);
 	gtk_fixed_put(GTK_FIXED(frame), node_box, 125, 65);
 	
@@ -70,6 +82,8 @@ void Gui::Load()
 	gtk_widget_show_all(window);
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(submit_but, "clicked", G_CALLBACK(Gui::Submit), NULL);	
+        g_signal_connect(user_db, "changed", G_CALLBACK(Gui::combo_selected), NULL);
+        g_signal_connect(timemed_cb, "clicked", G_CALLBACK(Gui::combo_selected),NULL);
 	gtk_main();
 }
 
@@ -91,4 +105,48 @@ void Gui::Submit(GtkWidget *widget, gpointer label)
 		printf("Lemons\n");
 	else
 		printf("Limes\n");
+}
+void Gui::combo_selected(GtkWidget *widget, gpointer window)
+{ 
+        gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(user_db));
+        for (int i = 0; i < number_of_nodes; i++)
+            gtk_combo_box_remove_text(GTK_COMBO_BOX(node_box),0);
+        number_of_nodes = 0;
+        for (int i = 0; i < glob_entrants.size();i++)
+        {
+            if (glob_entrants[i].get_name() == text)
+            {
+                vector<Node> t_n = glob_entrants[i].get_course().get_nodes();
+                for (int j = 0;j < t_n.size();j++)
+                {
+                        if (GTK_TOGGLE_BUTTON (timemed_cb)->active) 
+                        {
+                            if (t_n[j].get_nodetype() == "MC")
+                            {
+                                char c_n[2];
+                                sprintf(c_n, "%d", t_n[j].get_node());
+                                cout << t_n[j].get_node() << " " << t_n[j].get_nodetype() << "\n";
+                                number_of_nodes++;
+                                gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), c_n);
+                            }
+                        }
+                        else
+                        {
+                             if (t_n[j].get_nodetype() == "CP")
+                            {
+                                char c_n[2];
+                                sprintf(c_n, "%d", t_n[j].get_node());
+                                cout << t_n[j].get_node() << " " << t_n[j].get_nodetype() << "\n";
+                                number_of_nodes++;
+                                gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), c_n);
+                            }
+                        }
+		
+                        
+                        
+                }
+                break;
+            }
+        }
+        g_free(text);
 }

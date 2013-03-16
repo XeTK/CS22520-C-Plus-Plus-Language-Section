@@ -20,8 +20,6 @@
       <itemPath>FileReader.h</itemPath>
       <itemPath>Gui.cpp</itemPath>
       <itemPath>Gui.h</itemPath>
-      <itemPath>Holder.cpp</itemPath>
-      <itemPath>Holder.h</itemPath>
       <itemPath>Node.cpp</itemPath>
       <itemPath>Node.h</itemPath>
       <itemPath>blah.sh</itemPath>
@@ -69,10 +67,6 @@
       </item>
       <item path="Gui.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Holder.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Holder.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Node.h" ex="false" tool="3" flavor2="0">
@@ -116,10 +110,6 @@
       <item path="Gui.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Gui.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Holder.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Holder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>

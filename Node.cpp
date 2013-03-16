@@ -6,18 +6,21 @@
  */
 
 #include "Node.h"
+#include <string>
 using namespace std;
-Node::Node(int node, char *nodetype) 
+Node::Node(int node, string nodetype) 
 {
     this->node = node;
     this->nodetype = nodetype;
 }
+Node::Node(){}
+Node::~Node(){}
 int Node::get_node()
 {
     return this->node;
 }
 
-char *Node::get_nodetype()
+string Node::get_nodetype()
 {
     return this->nodetype;
 }

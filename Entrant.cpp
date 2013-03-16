@@ -16,6 +16,8 @@ Entrant::Entrant(int com_num, Course course,string com_name)
     this->course = course;
     this->competitor_name = com_name;
 }
+Entrant::Entrant(){}
+Entrant::~Entrant(){}
 int Entrant::get_entrant_no()
 {
     return this->competitor_number;

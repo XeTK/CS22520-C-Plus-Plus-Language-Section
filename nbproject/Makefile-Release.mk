@@ -39,7 +39,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Entrant.o \
 	${OBJECTDIR}/FileReader.o \
 	${OBJECTDIR}/Gui.o \
-	${OBJECTDIR}/Holder.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/main.o
 
@@ -87,11 +86,6 @@ ${OBJECTDIR}/Gui.o: Gui.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Gui.o Gui.cpp
-
-${OBJECTDIR}/Holder.o: Holder.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Holder.o Holder.cpp
 
 ${OBJECTDIR}/Node.o: Node.cpp 
 	${MKDIR} -p ${OBJECTDIR}
