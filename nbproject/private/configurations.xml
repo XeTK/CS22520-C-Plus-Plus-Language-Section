@@ -25,8 +25,10 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" times.txt Da</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" times.txt Data/entrants.txt Data/courses.txt Data/nodes.txt</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}" times.txt Data/entrants.txt Data/courses.txt Data/nodes.txt</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

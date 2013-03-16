@@ -15,10 +15,12 @@ using namespace std;
 static GtkWidget *window, *frame, *submit_but, *arival_box, *depart_box, *node_box, *timemed_cb, *user_db, *user_lbl, *arival_lbl, *depart_lbl, *cp_lbl;
 static vector<Entrant> glob_entrants;
 static int number_of_nodes = 0;
-Gui::Gui()
+static string time_file;
+Gui::Gui(string save_path, string entrant_path, string course_path, string node_path)
 {
-    FileReader fr;
-    glob_entrants = fr.get_entrants("Data/entrants.txt","Data/courses.txt","Data/nodes.txt");
+        time_file = save_path;
+        FileReader fr;
+        glob_entrants = fr.get_entrants(entrant_path.c_str(),course_path.c_str(),node_path.c_str());
 }
 void Gui::Load()
 {
@@ -61,7 +63,6 @@ void Gui::Load()
 	
 	//time_radio
 	timemed_cb = gtk_check_button_new_with_label("Medical Check Point");
-//	gtk_widget_set_size_request(timemed_cb, 95,25);
 	gtk_fixed_put(GTK_FIXED(frame), timemed_cb, 20, 110);
 
 
@@ -131,8 +132,10 @@ void Gui::Submit(GtkWidget *widget, gpointer label)
             sprintf(buff,"%c %s %d %s\n",'D',tnode,entrant,times);
             line += buff;
         }
-        cout << line;
-
+        FileReader fr;
+        fr.add_to_file(time_file.c_str(),line);
+        cout << "Added : " << line << "To " << time_file << " File\n";
+        message_box(window,"Success","The File Has been written here");
 }
 void Gui::combo_selected(GtkWidget *widget, gpointer window)
 { 
@@ -176,4 +179,16 @@ void Gui::combo_selected(GtkWidget *widget, gpointer window)
             }
         }
         g_free(text);
+}
+void Gui::message_box(GtkWidget* thisparent, const char* dtitle, const char* dmessage)
+{
+	GtkWidget* msg_box = gtk_dialog_new_with_buttons(dtitle, GTK_WINDOW(thisparent),
+		GTK_DIALOG_DESTROY_WITH_PARENT,GTK_STOCK_OK,GTK_RESPONSE_NONE,0);
+	
+	g_signal_connect_swapped(msg_box, "response", G_CALLBACK(gtk_widget_destroy),msg_box);
+		
+	GtkWidget* msgLabel = gtk_label_new(dmessage);
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(msg_box)->vbox), msgLabel);
+
+	gtk_widget_show_all(msg_box);
 }

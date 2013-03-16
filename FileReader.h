@@ -17,6 +17,7 @@ class FileReader
         public:
             ~FileReader();
             vector<Entrant> get_entrants(string entrant_path,string course_path,string node_path);
+            void add_to_file(string path, string line);
         private:
             vector<string> get_file_contents(string path);
             vector<Node> get_nodes(string path);

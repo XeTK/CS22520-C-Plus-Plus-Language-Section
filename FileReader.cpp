@@ -28,6 +28,16 @@ vector<string> FileReader::get_file_contents(string path)
     infile.close();
     return temp_strings;
 }
+void FileReader::add_to_file(string path, string line)
+{
+    vector<string> cur_file = get_file_contents(path);
+    cur_file.push_back(line);
+    ofstream file(path.c_str());
+    if (file.is_open())
+        for (int i = 0; i < cur_file.size();i++)
+            file << cur_file[i] << "\n";
+    file.close();
+}
 vector<Course> FileReader::get_courses(string course_path,string node_path)
 {
     vector<Course> temp_c;
