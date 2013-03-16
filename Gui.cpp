@@ -3,6 +3,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctime>
 #include <iostream>
 #include "Gui.h"
 #include "Entrant.h"
@@ -89,29 +90,58 @@ void Gui::Load()
 
 void Gui::Submit(GtkWidget *widget, gpointer label)
 {
-	gchar *node = gtk_combo_box_get_active_text(GTK_COMBO_BOX(node_box));
-	printf("%s\n",node);
+        string line;
+        char times[5];
+        char node;
+        int entrant;
+        
+        time_t now = time(0);
+        tm *gmtm = gmtime(&now);
+        sprintf(times,"%d:%d",gmtm->tm_hour,gmtm->tm_min);
+        
+        const char *ari = gtk_entry_get_text(GTK_ENTRY(arival_box));
+        if (gtk_entry_get_text_length(GTK_ENTRY(arival_box)) > 0)
+            sprintf(times,"%s",ari);
+        
+        if (GTK_TOGGLE_BUTTON (timemed_cb)->active)
+            node = 'A';
+        else
+            node = 'T';
+        
+        gchar *tnode = gtk_combo_box_get_active_text(GTK_COMBO_BOX(node_box));
+        
+        gchar *tentrant =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(user_db));
+        
+        for (int i = 0; i < glob_entrants.size();i++)
+        {
+            if (glob_entrants[i].get_name() == tentrant)
+            {
+                entrant = glob_entrants[i].get_entrant_no();
+                break;
+            }
+        }
+        char buff[100];
+        sprintf(buff,"%c %s %d %s\n",node,tnode,entrant,times);
+        line = buff;
+        if (GTK_TOGGLE_BUTTON (timemed_cb)->active) 
+        {
+            const char *dep = gtk_entry_get_text(GTK_ENTRY(depart_box));
+            if (gtk_entry_get_text_length(GTK_ENTRY(depart_box)) > 0)
+                sprintf(times,"%s",dep);
+            sprintf(buff,"%c %s %d %s\n",'D',tnode,entrant,times);
+            line += buff;
+        }
+        cout << line;
 
-	gchar *checkbox =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(user_db));
-        printf("%s\n",checkbox);
-
-	const char *dep = gtk_entry_get_text(GTK_ENTRY(depart_box));
-	printf("%s\n",dep);
-	
-	const char *ari = gtk_entry_get_text(GTK_ENTRY(arival_box));
-	printf("%s\n",ari);
-
-	if (GTK_TOGGLE_BUTTON (timemed_cb)->active) 
-		printf("Lemons\n");
-	else
-		printf("Limes\n");
 }
 void Gui::combo_selected(GtkWidget *widget, gpointer window)
 { 
         gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(user_db));
         for (int i = 0; i < number_of_nodes; i++)
             gtk_combo_box_remove_text(GTK_COMBO_BOX(node_box),0);
+        
         number_of_nodes = 0;
+        
         for (int i = 0; i < glob_entrants.size();i++)
         {
             if (glob_entrants[i].get_name() == text)
@@ -121,29 +151,26 @@ void Gui::combo_selected(GtkWidget *widget, gpointer window)
                 {
                         if (GTK_TOGGLE_BUTTON (timemed_cb)->active) 
                         {
+                            gtk_widget_set_sensitive(depart_box,true);
                             if (t_n[j].get_nodetype() == "MC")
                             {
                                 char c_n[2];
                                 sprintf(c_n, "%d", t_n[j].get_node());
-                                cout << t_n[j].get_node() << " " << t_n[j].get_nodetype() << "\n";
                                 number_of_nodes++;
                                 gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), c_n);
                             }
                         }
                         else
                         {
-                             if (t_n[j].get_nodetype() == "CP")
+                            gtk_widget_set_sensitive(depart_box,false);
+                            if (t_n[j].get_nodetype() == "CP")
                             {
                                 char c_n[2];
                                 sprintf(c_n, "%d", t_n[j].get_node());
-                                cout << t_n[j].get_node() << " " << t_n[j].get_nodetype() << "\n";
                                 number_of_nodes++;
                                 gtk_combo_box_append_text(GTK_COMBO_BOX(node_box), c_n);
                             }
-                        }
-		
-                        
-                        
+                        }		                                            
                 }
                 break;
             }
