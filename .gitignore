@@ -1,2 +1,6 @@
 /build/
 /dist/
+/Data/
+/nbproject/
+simple
+Makefile
