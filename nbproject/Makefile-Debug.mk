@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Course.o \
 	${OBJECTDIR}/Entrant.o \
+	${OBJECTDIR}/FileLock.o \
 	${OBJECTDIR}/FileReader.o \
 	${OBJECTDIR}/Gui.o \
 	${OBJECTDIR}/Node.o \
@@ -76,6 +77,11 @@ ${OBJECTDIR}/Entrant.o: Entrant.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g `pkg-config --cflags gtk+-2.0`   -MMD -MP -MF $@.d -o ${OBJECTDIR}/Entrant.o Entrant.cpp
+
+${OBJECTDIR}/FileLock.o: FileLock.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g `pkg-config --cflags gtk+-2.0`   -MMD -MP -MF $@.d -o ${OBJECTDIR}/FileLock.o FileLock.cpp
 
 ${OBJECTDIR}/FileReader.o: FileReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}

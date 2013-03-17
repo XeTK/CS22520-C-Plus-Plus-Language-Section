@@ -15,5 +15,6 @@ class Gui
 		static void CB_Checked(GtkWidget *widget, gpointer window);
                 static void combo_selected(GtkWidget *widget, gpointer window);
                 static void message_box(GtkWidget* parent, const char* title, const char* message);
+                static void node_combo_selected(GtkWidget *widget, gpointer window);
 	
 };

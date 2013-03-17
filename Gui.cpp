@@ -85,7 +85,9 @@ void Gui::Load()
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(submit_but, "clicked", G_CALLBACK(Gui::Submit), NULL);	
         g_signal_connect(user_db, "changed", G_CALLBACK(Gui::combo_selected), NULL);
+        g_signal_connect(node_box, "changed", G_CALLBACK(Gui::node_combo_selected), NULL);
         g_signal_connect(timemed_cb, "clicked", G_CALLBACK(Gui::combo_selected),NULL);
+        gtk_widget_set_sensitive(submit_but,false);
 	gtk_main();
 }
 
@@ -179,6 +181,18 @@ void Gui::combo_selected(GtkWidget *widget, gpointer window)
             }
         }
         g_free(text);
+}
+void Gui::node_combo_selected(GtkWidget *widget, gpointer window)
+{ 
+        gchar *text =  gtk_combo_box_get_active_text(GTK_COMBO_BOX(node_box));
+        if (text == NULL)
+        {
+             gtk_widget_set_sensitive(submit_but,false);
+        }
+        else
+        {
+              gtk_widget_set_sensitive(submit_but,true);
+        }
 }
 void Gui::message_box(GtkWidget* thisparent, const char* dtitle, const char* dmessage)
 {
