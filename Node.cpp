@@ -5,6 +5,8 @@
  * Created on 14 March 2013, 16:24
  */
 
+//Data Class for holding the data from nodes
+
 #include "Node.h"
 #include <string>
 using namespace std;

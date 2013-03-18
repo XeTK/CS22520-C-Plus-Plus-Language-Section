@@ -4,7 +4,7 @@
  * 
  * Created on 14 March 2013, 16:15
  */
-
+//Data class for the entrants 
 #include "Entrant.h"
 #include "Course.h"
 #include <string>
